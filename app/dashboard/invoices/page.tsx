@@ -7,7 +7,22 @@ import { Suspense } from 'react'
 import { turret } from "@/app/ui/fonts";
 
 
-export default function page (){
+export default function page ({
+
+searchParams
+}:{
+
+    searchParams?:{
+        query?: string
+        page?: string
+    }
+}){
+
+    const currentPage = Number ( searchParams?.page) || 1
+    const query  = searchParams?.query || ''
+
+
+    
     return (
 <div className="w-full">
 <div className="flex w-full items-center justify-between">
@@ -16,9 +31,14 @@ export default function page (){
 
 <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
 
-    <Search placeholder="busque papi" />
+    <Search placeholder="busque lo que sea papi" />
     <CreateInvoice /> 
 </div>
+<Suspense key={query + currentPage}  fallback={<InvoicesTableSkeleton/>}>
+<Table query={query} currentPage={currentPage} />
+
+
+</Suspense>
 
 <div className="mt-5 flex w-full justify-center">
 
