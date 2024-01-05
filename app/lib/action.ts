@@ -17,6 +17,8 @@ const  CreateInvoiceSchema = z.object({
 
 })
 
+const UpdateInvoice = FormSchema.omit({ id: true, date: true });
+
 
 const CreateInvoiceFormSchema = CreateInvoiceSchema.omit(
     {
@@ -29,7 +31,7 @@ const CreateInvoiceFormSchema = CreateInvoiceSchema.omit(
     
 
 export async function createInvoice(formData: FormData) {
-    const {customerId, amount, status } = CreateInvoiceFormSchema.parse({
+    const {customerId, amount, status } =  UpdateInvoice.parse({
         customerId: formData.get('customerId'),
         amount: formData.get('amount'),
         status: formData.get('status'),
@@ -42,7 +44,6 @@ export async function createInvoice(formData: FormData) {
     const [date] = new Date().toISOString().split('T')
 
     
-
     
    await sql`
    

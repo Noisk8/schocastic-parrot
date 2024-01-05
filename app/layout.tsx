@@ -1,5 +1,6 @@
 import './ui/global.css';
-import { montserrat, turret } from './ui/fonts';
+import { spacemono, turret } from './ui/fonts';
+import { Space_Mono } from 'next/font/google';
 
 
 export default function RootLayout({
@@ -9,7 +10,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${turret.className} atialiased`}>
+      <body className={`${spacemono.className} atialiased`}>
         {children}
         
         <footer>
