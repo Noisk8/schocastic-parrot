@@ -1,6 +1,5 @@
 import './ui/global.css';
 import { spacemono, turret } from './ui/fonts';
-import { Space_Mono } from 'next/font/google';
 
 
 export default function RootLayout({
